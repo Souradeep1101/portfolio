@@ -3,29 +3,15 @@ permalink: /about/
 title: "About"
 ---
 
-# About
-
-# Who am I?
-
-_Your Friendly Neighborhood Guy._
-
-![faizur-rehman-pHPzdEHN6Os-unsplash.jpg](/assets/images/faizur-rehman-pHPzdEHN6Os-unsplash.jpg)
-
-![](https://images.unsplash.com/photo-1543147495-b6984a841135?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
-
 ![](https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
 
-## A bit ‘bout myself!
+<img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf" width="50%" hspace="20" align="right">
 
 Hey, I'm Souradeep Banerjee, an incoming freshman at Arizona State University. I'm from India and love learning new things, constantly striving to broaden my horizons. With a good base in computer science, I am eager to dive deeper into the world of technology and innovation.
 
-[Say Hi! →](https://mattdowney.com/products/folio-super-template)
-
-![](https://images.unsplash.com/photo-1635657987517-c143fad8079c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
-
-![](https://images.unsplash.com/photo-1590523277812-c3cc1176dd79?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
-
 ## My past experiences ~
+
+<img src="https://images.unsplash.com/photo-1635657987517-c143fad8079c" width="50%" hspace="20" align="left">
 
 In my internship at CRUV, I developed over 15 screens and components for sturdy UIs using Flutter, ensuring seamless integration with back-end systems. I reduced load times by 30% while implementing RESTful APIs. Conducting A/B tests, I enriched the user experience, leading to a 20% increase in user satisfaction scores.
 

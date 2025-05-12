@@ -5,13 +5,23 @@ title: "About"
 
 ![](https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
 
-<img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf" width="50%" hspace="20" align="right">
+<img
+  src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf"
+  width="50%"
+  style="float:right; margin:0 0 0 10px;"
+  alt="…"
+/>
 
 Hey, I'm Souradeep Banerjee, an incoming freshman at Arizona State University. I'm from India and love learning new things, constantly striving to broaden my horizons. With a good base in computer science, I am eager to dive deeper into the world of technology and innovation.
 
 ## My past experiences ~
 
-<img src="https://images.unsplash.com/photo-1635657987517-c143fad8079c" width="50%" hspace="20" align="left">
+<img
+  src="https://images.unsplash.com/photo-1635657987517-c143fad8079c"
+  width="50%"
+  style="float:left; margin:0 10 0 0px;"
+  alt="…"
+/>
 
 In my internship at CRUV, I developed over 15 screens and components for sturdy UIs using Flutter, ensuring seamless integration with back-end systems. I reduced load times by 30% while implementing RESTful APIs. Conducting A/B tests, I enriched the user experience, leading to a 20% increase in user satisfaction scores.
 
@@ -19,13 +29,25 @@ I have worked on projects like ElevenAI, an AI chat with real-time image generat
 
 ## My interests ~
 
-I am learning now what AI and Software Development can do. What thrills me is developing applications with the existing large language models GPT-4 and Llama. I relish the challenge of integrating these technologies into seamlessly user-friendly applications that solve real-life problems, enhancing the experience of the end-user.
+<img
+  src="https://images.unsplash.com/photo-1554290712-e640351074bd"
+  width="50%"
+  style="float:right; margin:0 0 0 10px;"
+  alt="…"
+/>
 
-![](https://images.unsplash.com/photo-1554290712-e640351074bd?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
+I am learning now what AI and Software Development can do. What thrills me is developing applications with the existing large language models GPT-4 and Llama. I relish the challenge of integrating these technologies into seamlessly user-friendly applications that solve real-life problems, enhancing the experience of the end-user.
 
 ![](https://images.unsplash.com/photo-1539606328118-80c679838702?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
 
 ## Generative AI Enthusiast ~
+
+<img
+  src="https://images.unsplash.com/photo-1635657987517-c143fad8079c"
+  width="50%"
+  style="float:left; margin:0 10 0 0px;"
+  alt="…"
+/>
 
 I love working on amazing pictures using generative AI tools like Stable Diffusion and Midjourney. I admire their creative possibility and always look forward to pushing the limits of what can be done with technology. It's fantastic to see how simple ideas transform into visually appealing artwork.
 

@@ -6,7 +6,7 @@ main:
   # - title: "Tags"
   #   url: /tags/
   - title: "About"
-    url: /
+    url: /about/
   - title: "Resume"
     url: https://google.com
     target: _blank

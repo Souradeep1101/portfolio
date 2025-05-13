@@ -1,5 +1,5 @@
 ---
-permalink: /
+permalink: /about/
 title: "About"
 overlay_image: https://images.unsplash.com/photo-1540959733332-eab4deabeeaf
 ---

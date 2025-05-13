@@ -90,6 +90,10 @@ footer:
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/souradeep_1101"
 
+# Hide Feed
+atom_feed:
+  hide: true
+
 defaults:
   # _posts
   - scope:

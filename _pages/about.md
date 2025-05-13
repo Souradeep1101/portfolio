@@ -12,7 +12,7 @@ title: "About"
   alt="…"
 /> -->
 
-Hey, I'm Souradeep Banerjee, an incoming freshman at Arizona State University. I'm from India and love learning new things, constantly striving to broaden my horizons. With a good base in computer science, I am eager to dive deeper into the world of technology and innovation.
+Hey, I'm Souradeep Banerjee, a sophomore at Arizona State University. I'm from India and love learning new things, constantly striving to broaden my horizons. With a good base in computer science, I am eager to dive deeper into the world of technology and innovation.
 
 ## My past experiences ~
 

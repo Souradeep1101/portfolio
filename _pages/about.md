@@ -7,7 +7,7 @@ header:
   caption: "Photo credit: Unsplash"
 ---
 
-![](https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
+<!-- ![](https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb) -->
 
 <!-- <img
   src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf"

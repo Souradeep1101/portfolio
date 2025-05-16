@@ -1,8 +1,6 @@
 ---
-permalink: /about/
+permalink: /
 title: "About"
-redirect_from:
-  - /
 header:
   overlay_image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf"
   overlay_filter: 0.5 # optional — tints it with a semi-transparent black

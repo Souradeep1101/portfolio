@@ -9,7 +9,7 @@ header:
   overlay_filter: 0.5 # optional — tints it with a semi-transparent black
   caption: "Photo credit: Unsplash"
 feature_row:
-  - image_path: /assets/images/cruv-org.avif
+  - image_path: "https://cruv.org/static/social.png"
     alt: "Flutter Frontend Intern at CRUV"
     title: "CRUV ~ Flutter Frontend (Intern)"
     excerpt: |

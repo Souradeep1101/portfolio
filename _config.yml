@@ -123,7 +123,8 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
+      share: false
+      classes: wide
   # _projects
   - scope:
       path: ""
@@ -131,7 +132,8 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
+      share: false
+      classes: wide
 
 collections:
   work:

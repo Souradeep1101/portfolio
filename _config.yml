@@ -115,6 +115,30 @@ defaults:
       layout: single
       classes: wide
       author_profile: true
+  # _work
+  - scope:
+      path: ""
+      type: work
+    values:
+      layout: single
+      author_profile: true
+      share: true
+  # _projects
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: single
+      author_profile: true
+      share: true
+
+collections:
+  work:
+    output: true
+    permalink: /work/:path/
+  projects:
+    output: true
+    permalink: /projects/:path/
 
 category_archive:
   type: liquid

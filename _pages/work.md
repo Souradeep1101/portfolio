@@ -4,6 +4,7 @@ layout: collection
 permalink: /work/
 entries_layout: grid
 classes: wide
+excerpt: "A timeline of my work experience."
 header:
   overlay_image: "https://images.unsplash.com/photo-1613909207039-6b173b755cc1"
   # overlay_filter: 0.5 # optional — tints it with a semi-transparent black
@@ -20,7 +21,5 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--light-outline"
 ---
-
-A timeline of my work experience.
 
 {% include feature_row type="left"%}

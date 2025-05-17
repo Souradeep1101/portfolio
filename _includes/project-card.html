@@ -1,0 +1,34 @@
+{% assign tags = include.tags | split:"," %}
+{% if include.url %}
+<a href="{{ include.url | relative_url }}" class="project-card">
+{% else %}
+<div class="project-card">
+{% endif %}
+
+  {% if include.image %}
+  <figure class="card-figure">
+    <img
+      src="{{ include.image | prepend: site.baseurl | relative_url }}"
+      alt="{{ include.title }}"
+    >
+  </figure>
+  {% endif %}
+
+  <div class="card-content">
+    <h3 class="card-title">{{ include.title }}</h3>
+    <p class="card-date">{{ include.date }}</p>
+    <div class="card-tags">
+      {% for tag in include.tags | split: "," %}
+        <span class="tag">
+          {{ tag | strip }}{% unless forloop.last %},{% endunless %}
+        </span>
+      {% endfor %}
+</div>
+
+  </div>
+
+{% if include.url %}
+</a>
+{% else %}
+</div>
+{% endif %}

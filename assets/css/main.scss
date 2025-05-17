@@ -1,0 +1,42 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+search: false
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+.project-card {
+  display: block; // so an <a> can wrap it
+  border-radius: 0.75rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-level-1);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-level-2);
+  }
+
+  .card-figure {
+    margin: 0;
+    background: none; // image sits flush
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .card-content {
+  }
+
+  .card-title,
+  .card-date,
+  .card-tags {
+    /* your existing styles… */
+  }
+}

@@ -6,7 +6,7 @@ entries_layout: grid
 classes: wide
 header:
   overlay_image: "https://images.unsplash.com/photo-1613909207039-6b173b755cc1"
-  overlay_filter: 0.5 # optional — tints it with a semi-transparent black
+  # overlay_filter: 0.5 # optional — tints it with a semi-transparent black
   caption: "Photo credit: Unsplash"
 feature_row:
   - image_path: "https://cruv.org/static/social.png"

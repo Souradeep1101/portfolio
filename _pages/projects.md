@@ -6,11 +6,11 @@ entries_layout: grid
 classes: wide
 excerpt: "A collection of work from 2022 to 2024."
 header:
-  overlay_image: "https://images.unsplash.com/photo-1543147495-b6984a841135"
+  overlay_image: "/assets/images/projects/overlay_image.jpeg"
   # overlay_filter: 0.5 # optional — tints it with a semi-transparent black
   caption: "Photo credit: Unsplash"
 feature_row:
-  - image_path: "/assets/images/sugarbear.png"
+  - image_path: "/assets/images/projects/sugarbear.png"
     alt: "SugarBear"
     title: "SugarBear"
     excerpt: |
@@ -22,7 +22,7 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--light-outline"
 
-  - image_path: "/assets/images/lms.svg"
+  - image_path: "/assets/images/projects/lms.svg"
     alt: "LibraryManagementSystem"
     title: "LibraryManagementSystem"
     excerpt: |
@@ -34,7 +34,7 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--light-outline"
 
-  - image_path: "/assets/images/elevenai.png"
+  - image_path: "/assets/images/projects/elevenai.png"
     alt: "ElevenAI"
     title: "ElevenAI"
     excerpt: |
@@ -46,7 +46,7 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--light-outline"
 
-  - image_path: "/assets/images/yogaapp.svg"
+  - image_path: "/assets/images/projects/yogaapp.svg"
     alt: "YogaApp"
     title: "YogaApp"
     excerpt: |

@@ -3,7 +3,7 @@ permalink: /about/
 title: "About"
 author_profile: true
 header:
-  overlay_image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf"
+  overlay_image: "/assets/images/about/overlay_image.jpeg"
   # overlay_filter: 0.5 # optional — tints it with a semi-transparent black
   caption: "Photo credit: Unsplash"
 ---
@@ -28,7 +28,7 @@ Hey, I'm Souradeep Banerjee, a sophomore at Arizona State University. I'm from I
   alt="…"
 /> -->
 
-![](https://images.unsplash.com/photo-1635657987517-c143fad8079c)
+![](/assets/images/about/past_experiences.jpeg)
 
 In my internship at CRUV, I developed over 15 screens and components for sturdy UIs using Flutter, ensuring seamless integration with back-end systems. I reduced load times by 30% while implementing RESTful APIs. Conducting A/B tests, I enriched the user experience, leading to a 20% increase in user satisfaction scores.
 
@@ -43,7 +43,7 @@ I have worked on projects like ElevenAI, an AI chat with real-time image generat
   alt="…"
 /> -->
 
-![](https://images.unsplash.com/photo-1554290712-e640351074bd)
+![](/assets/images/about/my_interests.jpeg)
 
 I am learning now what AI and Software Development can do. What thrills me is developing applications with the existing large language models GPT-4 and Llama. I relish the challenge of integrating these technologies into seamlessly user-friendly applications that solve real-life problems, enhancing the experience of the end-user.
 
@@ -51,7 +51,7 @@ I am learning now what AI and Software Development can do. What thrills me is de
 
 ## Generative AI Enthusiast ~
 
-![](https://images.unsplash.com/photo-1539606328118-80c679838702)
+![](/assets/images/about/gen_ai.jpeg)
 
 <!-- <img
   src="https://images.unsplash.com/photo-1539606328118-80c679838702"
@@ -64,6 +64,6 @@ I love working on amazing pictures using generative AI tools like Stable Diffusi
 
 ## Deep Learning & LangChain ~
 
-![](https://images.unsplash.com/photo-1557562645-4eee56b29bc1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
+![](/assets/images/about/dl.jpeg)
 
 I'm passionate about understanding how AI technologies work and am delving deep into their development. Currently, I'm exploring LangChain and AI, discovering great learning and innovation possibilities. This journey has been both challenging and thrilling, uncovering the complexities and opportunities in the AI landscape.

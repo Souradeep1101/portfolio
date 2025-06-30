@@ -1,0 +1,19 @@
+// .vscode/tasks.json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "docker-build",
+      "type": "shell",
+      "command": "docker build -t portfolio .",
+      "problemMatcher": []
+    },
+    {
+      "label": "docker-run",
+      "type": "shell",
+      "dependsOn": "docker-build",
+      "command": "docker run --rm -it -p 4000:4000 -v \"${workspaceFolder}:/srv/jekyll\" portfolio",
+      "problemMatcher": []
+    }
+  ]
+}

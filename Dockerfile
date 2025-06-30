@@ -20,6 +20,9 @@ VOLUME ["/srv/jekyll"]
 # expose Jekyll's default port  
 EXPOSE 4000  
 
+# set environment to production for google analytics
+ENV JEKYLL_ENV=production
+
 # on container start: install any new gems + serve  
 ENTRYPOINT ["sh", "-c"]  
 CMD ["bundle install && bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental --force_polling"]

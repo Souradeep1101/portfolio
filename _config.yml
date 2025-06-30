@@ -96,6 +96,14 @@ footer:
 atom_feed:
   hide: true
 
+# Google Analytics
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-60NZ540GYT"
+    anonymize_ip: false # default
+
+
 defaults:
   # _posts
   - scope:

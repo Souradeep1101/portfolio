@@ -26,9 +26,11 @@ twitter_username: Souradeep1101
 github_username: Souradeep1101
 minimal_mistakes_skin: neon
 search: true
+# search_provider: algolia
 url: "https://souradeep.dev"
 logo: "/assets/images/favicon/Logo _ Website - Dark.svg"
 masthead_title: "\0"
+breadcrumbs: true  # disabled by default
 
 # Build settings
 markdown: kramdown
@@ -105,6 +107,8 @@ analytics:
     tracking_id: "G-60NZ540GYT"
     anonymize_ip: false # default
 
+# Google Site Verification
+google_site_verification: "lKwlBHZdOo6032trFVsEXjkQVrlmgRo1qNkNbs2rEhA"
 
 defaults:
   # _posts

@@ -27,6 +27,8 @@ github_username: Souradeep1101
 minimal_mistakes_skin: neon
 search: true
 url: "https://souradeep.dev"
+logo: "/assets/images/favicon/Logo _ Website - Dark.svg"
+masthead_title: "\0"
 
 # Build settings
 markdown: kramdown

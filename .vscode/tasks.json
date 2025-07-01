@@ -3,16 +3,15 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "docker-build",
+      "label": "Compose Up",
       "type": "shell",
-      "command": "docker build -t portfolio .",
+      "command": "docker-compose up --build",
       "problemMatcher": []
     },
     {
-      "label": "docker-run",
+      "label": "Compose Down",
       "type": "shell",
-      "dependsOn": "docker-build",
-      "command": "docker run --rm -it -p 4000:4000 -v \"${workspaceFolder}:/srv/jekyll\" portfolio",
+      "command": "docker-compose down -v",
       "problemMatcher": []
     }
   ]

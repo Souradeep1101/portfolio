@@ -1,8 +1,8 @@
-// .vscode/keybindings.json
-[
-  {
-    "key": "ctrl+f5",
-    "command": "workbench.action.tasks.runTask",
-    "args": "docker-run"
-  }
-]
+// // .vscode/keybindings.json
+// [
+//   {
+//     "key": "ctrl+f5",
+//     "command": "workbench.action.tasks.runTask",
+//     "args": "docker-run"
+//   }
+// ]

@@ -18,65 +18,27 @@ Replace sample content with your own and [configure as necessary](https://mmista
 
 ---
 
-## Local development with Docker
+## Local development with Docker Compose
 
-You can run your Jekyll site locally with Docker in three ways:
+Use the provided `docker-compose.yml` to build and run the site in one command. This is the *only* supported local workflow:
 
-### 1. Using plain CMD commands
+```bash
+# Build the image and bring up the container (creates named volumes for build output)
+docker-compose up --build
 
-1. **Build the image**  
-   ```bash
-   docker build -t portfolio .
-   ```
-2. **Run the container**  
-   ```bash
-   docker run --rm      -p 4000:4000      -v "${PWD}:/srv/jekyll"      portfolio      bundle exec jekyll serve        --host 0.0.0.0        --livereload        --incremental        --force_polling
-   ```
-3. **Browse**  
-   Open <http://localhost:4000> in your browser. Changes to your files will trigger live regeneration.
+# Then browse to:
+http://localhost:4000
+```
 
-### 2. Via VS Code Tasks (Command Palette)
+To stop the site and remove containers and networks, run:
 
-- `.vscode/tasks.json` already defines two tasks:
+```bash
+docker-compose down -v
+```
 
-  ```json
-  {
-    "label": "docker-build",
-    "type": "shell",
-    "command": "docker build -t portfolio .",
-    "problemMatcher": []
-  },
-  {
-    "label": "docker-run",
-    "type": "shell",
-    "dependsOn": "docker-build",
-    "command": "docker run --rm -p 4000:4000 -v "${workspaceFolder}:/srv/jekyll" portfolio",
-    "problemMatcher": []
-  }
-  ```
-- **Run**  
-  Press **Ctrl+Shift+P** → **Tasks: Run Task** → **docker-run**.
-- **Browse**  
-  Open <http://localhost:4000>.
+Any edits to your source files will trigger Jekyll’s incremental rebuild with live-reload. `_site` and `vendor` are kept inside Docker volumes and will not clutter your host filesystem.
 
-### 3. Via VS Code Launch (F5 / Ctrl+F5)
-
-- `.vscode/launch.json` defines a configuration that invokes the **docker-run** task:
-
-  ```json
-  {
-    "name": "🚀 Run Jekyll in Docker",
-    "type": "pwa-node",
-    "request": "launch",
-    "preLaunchTask": "docker-run",
-    "program": "${workspaceFolder}",
-    "console": "integratedTerminal"
-  }
-  ```
-- **Run**  
-  Press **F5** (Start Debugging) or **Ctrl+F5** (Run Without Debugging).
-- **Browse**  
-  Open <http://localhost:4000>.
+> **Note:** The other two methods (plain `docker run` commands and VS Code Tasks/Launch) are now **deprecated and no longer supported**. Please use Docker Compose for all local development.
 
 ---
 

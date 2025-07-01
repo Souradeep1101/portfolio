@@ -1,0 +1,25 @@
+# docker-compose.yml
+version: "3.8"
+services:
+  jekyll:
+    build: .
+    ports:
+      - "4000:4000"
+    volumes:
+      # 1) Bind your source code read/write
+      - .:/srv/jekyll
+      # 2) Mount named volumes *over* _site and vendor
+      - jekyll_site:/srv/jekyll/_site
+      - jekyll_vendor:/srv/jekyll/vendor
+    command: >
+      bundle exec jekyll serve
+        --source /srv/jekyll
+        --destination /srv/jekyll/_site
+        --host 0.0.0.0
+        --livereload
+        --incremental
+        --force_polling
+        --baseurl ""
+volumes:
+  jekyll_site:
+  jekyll_vendor:

@@ -24,5 +24,7 @@ EXPOSE 4000
 ENV JEKYLL_ENV=production
 
 # on container start: install any new gems + serve  
-ENTRYPOINT ["sh", "-c"]  
-CMD ["bundle install && bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental --force_polling"]
+# ENTRYPOINT ["sh", "-c"]  
+# CMD ["bundle install && bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental --force_polling"]
+ENTRYPOINT ["bundle", "exec", "jekyll", "serve"]
+CMD ["--host","0.0.0.0","--livereload","--incremental","--force_polling","--baseurl",""]

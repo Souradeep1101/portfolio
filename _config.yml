@@ -16,6 +16,10 @@ social:
   - "https://github.com/Souradeep1101"
   - "https://www.linkedin.com/in/Souradeep1101"
   - "https://instagram.com/souradeep_1101"
+  - "https://www.reddit.com/user/Souradeep1101/"
+  - "https://search.asu.edu/profile/4997799"
+  - "https://www.youtube.com/channel/UCv4ctQjbqZ0tq8lxchYkm2g"
+  - "https://www.facebook.com/profile.php?id=100081515016372"
 
 # GitHub Settings
 repository: Souradeep1101/portfolio
@@ -102,6 +106,15 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/Souradeep1101"
+    - label: "Reddit"
+      icon: "fab fa-fw fa-reddit"
+      url: "https://www.reddit.com/user/Souradeep1101/"
+    - label: "Youtube"
+      icon: "fab fa-fw fa-youtube-square"
+      url: "https://www.youtube.com/channel/UCv4ctQjbqZ0tq8lxchYkm2g"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://www.facebook.com/profile.php?id=100081515016372"
 
 footer:
   links:
@@ -117,6 +130,15 @@ footer:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/Souradeep1101"
+    - label: "Reddit"
+      icon: "fab fa-fw fa-reddit"
+      url: "https://www.reddit.com/user/Souradeep1101/"
+    - label: "Youtube"
+      icon: "fab fa-fw fa-youtube-square"
+      url: "https://www.youtube.com/channel/UCv4ctQjbqZ0tq8lxchYkm2g"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://www.facebook.com/profile.php?id=100081515016372"
 
 # Hide Feed
 atom_feed:

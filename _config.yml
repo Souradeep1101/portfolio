@@ -8,6 +8,15 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
+# SEO
+social:
+  name: Souradeep Banerjee
+  links:
+  - "https://twitter.com/Souradeep1101"
+  - "https://github.com/Souradeep1101"
+  - "https://www.linkedin.com/in/Souradeep1101"
+  - "https://instagram.com/souradeep_1101"
+
 # GitHub Settings
 repository: Souradeep1101/portfolio
 
@@ -17,6 +26,7 @@ repository: Souradeep1101/portfolio
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Souradeep Banerjee
+tagline: "Full-Stack Development • Video Generative AI • Machine Learning Research"
 email: sbaner92@asu.edu
 description: >- # this means to ignore newlines until "baseurl:"
   Souradeep Banerjee's portfolio showcases full-stack web development, 
@@ -31,6 +41,11 @@ url: "https://souradeep.dev"
 logo: "/assets/images/favicon/Logo _ Website - Dark.svg"
 masthead_title: "\0"
 breadcrumbs: true  # disabled by default
+
+# Twitter
+twitter:
+  username: Souradeep1101    # your @handle, without the @
+  card:    summary_large_image
 
 # Build settings
 markdown: kramdown
@@ -84,6 +99,9 @@ author:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/souradeep_1101"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/Souradeep1101"
 
 footer:
   links:
@@ -96,6 +114,9 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/souradeep_1101"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/Souradeep1101"
 
 # Hide Feed
 atom_feed:

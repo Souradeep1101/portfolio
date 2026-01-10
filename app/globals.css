@@ -8,7 +8,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  /* Map other utilities to variables as needed... */
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -22,86 +21,80 @@
 
 /* --- THEME DEFINITIONS --- */
 
-/* 1. DEFAULT THEME ("Eclipse" - Your original Black/Purple/Emerald) */
 :root {
   --radius: 0.625rem;
-  --background: oklch(0 0 0);          /* Pure Black */
+  --background: oklch(0 0 0);
   --foreground: oklch(0.985 0 0);
-  
-  --primary: oklch(0.75 0.18 290);     /* Bright Purple */
+  --primary: oklch(0.75 0.18 290);
   --primary-foreground: oklch(0 0 0);
-  
-  --secondary: oklch(0.70 0.15 150);   /* Emerald Green */
+  --secondary: oklch(0.70 0.15 150);
   --secondary-foreground: oklch(0 0 0);
-  
-  --muted: oklch(0.20 0 0);            /* Dark Grey */
-  --muted-foreground: oklch(0.65 0 0); /* Slate */
-  
+  --muted: oklch(0.20 0 0);
+  --muted-foreground: oklch(0.65 0 0);
   --accent: oklch(0.15 0 0);
   --border: oklch(1 0 0 / 10%);
   --card: oklch(0.10 0 0);
 }
 
-/* 2. CYBERPUNK THEME (Violet / Neon Pink / Cyan) */
 [data-theme='cyberpunk'] {
-  --background: oklch(0.08 0.05 280);  /* Deep Void Purple */
+  --background: oklch(0.08 0.05 280);
   --foreground: oklch(0.95 0.02 280);
-
-  --primary: oklch(0.65 0.25 330);     /* Neon Pink */
+  --primary: oklch(0.65 0.25 330);
   --primary-foreground: oklch(1 0 0);
-
-  --secondary: oklch(0.75 0.15 220);   /* Electric Cyan */
+  --secondary: oklch(0.75 0.15 220);
   --secondary-foreground: oklch(0 0 0);
-
   --muted: oklch(0.20 0.05 280);
   --muted-foreground: oklch(0.60 0.05 280);
-  
   --accent: oklch(0.25 0.10 290);
-  --border: oklch(0.8 0.1 330 / 20%);  /* Pink Tint Border */
+  --border: oklch(0.8 0.1 330 / 20%);
   --card: oklch(0.12 0.05 280);
 }
 
-/* 3. MATRIX THEME (Deep Green / Terminal Green) */
 [data-theme='matrix'] {
-  --background: oklch(0.02 0.02 140);  /* Very Dark Green-Black */
-  --foreground: oklch(0.90 0.1 140);   /* Light Green */
-
-  --primary: oklch(0.75 0.2 140);      /* Bright Terminal Green */
+  --background: oklch(0.02 0.02 140);
+  --foreground: oklch(0.90 0.1 140);
+  --primary: oklch(0.75 0.2 140);
   --primary-foreground: oklch(0 0 0);
-
-  --secondary: oklch(0.6 0.15 140);    /* Dimmer Green */
+  --secondary: oklch(0.6 0.15 140);
   --secondary-foreground: oklch(0 0 0);
-
   --muted: oklch(0.15 0.05 140);
   --muted-foreground: oklch(0.5 0.1 140);
-
   --accent: oklch(0.2 0.1 140);
   --border: oklch(0.75 0.2 140 / 20%);
   --card: oklch(0.05 0.05 140);
 }
 
-/* 4. MIDNIGHT THEME (Deep Blue / Sky / Slate) */
 [data-theme='midnight'] {
-  --background: oklch(0.10 0.05 260);  /* Navy Blue */
+  --background: oklch(0.10 0.05 260);
   --foreground: oklch(0.98 0 0);
-
-  --primary: oklch(0.60 0.2 250);      /* Royal Blue */
+  --primary: oklch(0.60 0.2 250);
   --primary-foreground: oklch(1 0 0);
-
-  --secondary: oklch(0.7 0.15 200);    /* Sky Blue */
+  --secondary: oklch(0.7 0.15 200);
   --secondary-foreground: oklch(0 0 0);
-
   --muted: oklch(0.20 0.05 260);
   --muted-foreground: oklch(0.60 0.05 260);
-
   --accent: oklch(0.25 0.05 260);
   --border: oklch(1 0 0 / 10%);
   --card: oklch(0.15 0.05 260);
 }
 
-/* ... keep your base layer styles (scrollbar, etc.) ... */
 @layer base {
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* --- CUSTOM UTILITIES --- */
+
+@layer utilities {
+  /* Hides scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hides scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }

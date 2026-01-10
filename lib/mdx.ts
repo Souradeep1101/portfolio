@@ -33,9 +33,12 @@ export function getPosts(): Post[] {
 
   const posts = files
     .filter((file) => path.extname(file) === ".mdx")
-    .map((file) => getPostBySlug(file.replace(".mdx", "")));
+    .map((file) => {
+      // Use path.parse to get only the filename without extension
+      const slug = path.parse(file).name; 
+      return getPostBySlug(slug);
+    });
 
-  // Sort by date (newest first)
   return posts.sort((a, b) =>
     new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
   );

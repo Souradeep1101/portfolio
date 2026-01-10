@@ -39,3 +39,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# --- Legacy Jekyll & Docker Cleanup ---
+# These prevent old build artifacts from being committed
+_site/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+bin/
+
+# Docker specific
+.docker/
+docker-compose.override.yml
+
+# --- Development Tools ---
+# VS Code specific
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Local Content / Logs
+old-sitemap.xml
+*.log

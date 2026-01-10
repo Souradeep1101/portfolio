@@ -15,9 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 1. METADATA: The "Head" of your document
+/** * 1. SEO METADATA
+ * Using 'metadataBase' and 'alternates.canonical' ensures Google understands 
+ * that your multiple redirected paths belong to one primary URL.
+ */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://souradeep.dev"), // REPLACE with your actual domain
+  metadataBase: new URL("https://souradeep.dev"),
   title: {
     default: "Souradeep Banerjee | Systems Engineer",
     template: "%s | Souradeep Banerjee",
@@ -34,6 +37,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Souradeep Banerjee" }],
   creator: "Souradeep Banerjee",
+  alternates: {
+    canonical: "https://souradeep.dev",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -43,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Souradeep Banerjee",
     images: [
       {
-        url: "/og-image.png", // You should add an Open Graph image in public/ folder
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Souradeep Banerjee Portfolio",
@@ -70,20 +76,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   
-  // 2. JSON-LD: The "Knowledge Graph" Signal
-  // This connects "Souradeep Banerjee" to "Souradeep1101"
+  /** * 2. JSON-LD (STRUCTURED DATA)
+   * This explicitly links your domain to your identity across the web.
+   */
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Souradeep Banerjee",
     "url": "https://souradeep.dev",
-    "image": "https://souradeep.dev/og-image.png", // Or your profile picture URL
+    "image": "https://souradeep.dev/og-image.png",
     "sameAs": [
       "https://github.com/Souradeep1101",
       "https://www.linkedin.com/in/Souradeep1101",
       "https://twitter.com/Souradeep1101",
       "https://www.youtube.com/channel/UCv4ctQjbqZ0tq8lxchYkm2g",
-      "https://search.asu.edu/profile/4997799" // VERY IMPORTANT: Links you to ASU
+      "https://search.asu.edu/profile/4997799"
     ],
     "jobTitle": "Systems Engineer",
     "worksFor": {
@@ -95,7 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Inject the JSON-LD script */}
+        {/* Injecting Structured Data for Search Engines */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -103,7 +110,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen font-sans antialiased bg-background text-foreground",
+          "min-h-screen font-sans antialiased bg-background text-foreground transition-colors duration-300",
           geistSans.variable,
           geistMono.variable
         )}

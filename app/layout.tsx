@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { Analytics } from "@vercel/analytics/react"; // 1. Import Vercel Analytics
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -123,6 +124,8 @@ export default function RootLayout({
         >
           {children}
           <ThemeSwitcher />
+          {/* 2. Place Analytics component here to track all pages */}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

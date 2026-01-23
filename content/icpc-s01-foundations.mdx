@@ -1,0 +1,242 @@
+---
+title: "ICPC Primer S01: Foundations & Prefix Sums"
+publishedAt: "2026-01-25"
+summary: "Eliminating $O(N^2)$ loops using $O(N)$ pre-computation. Analysis of Static Range Sum Queries."
+tags: ["C++", "Prefix Sums", "Algorithms"]
+author: "Souradeep1101"
+series: "icpc-spring-26"
+image: "/images/icpc-launch-banner-01.png"
+---
+
+## Session Architecture
+
+* **Topic:** Foundations
+* **Focus:** Prefix Sums & Time Complexity
+* **Goal:** Stop writing $O(N^2)$ loops. Learn to answer range queries in $O(1)$ time after $O(N)$ pre-computation.
+
+![ACM Sunday Labs Launch Banner](/images/icpc-launch-banner-01.png)
+
+---
+
+### Problem 1: Static Range Sum Queries
+
+* **Source:** [CSES 1646](https://cses.fi/problemset/task/1646)
+* **Constraint:** $N, Q \le 2 \cdot 10^5$
+* **Target Complexity:** $O(N + Q)$
+
+Given an array of $n$ integers, your task is to process $q$ queries of the form: what is the sum of values in range $[a,b]$?
+
+#### Analysis
+
+A naive iteration from $a$ to $b$ for every query results in $O(N \cdot Q)$, which causes a Time Limit Exceeded (TLE) error. We use a prefix sum array where `pref[i]` stores the sum of all elements from index `1` to `i`.
+
+$$
+\text{Sum}(a, b) = \text{pref}[b] - \text{pref}[a-1]
+$$
+
+#### Implementation (C++)
+
+```cpp
+// g++ main.cpp -o main
+// .\main
+// Get-Content input.txt | .\main.exe
+// cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    ll n, q;
+    cin >> n >> q;
+    vector<ll> pref(n + 1, 0);
+    for (int i = 1; i <= n; i++) {
+        ll curr; cin >> curr;
+        pref[i] = pref[i - 1] + curr;
+    }
+    while (q--) {
+        ll a, b;
+        cin >> a >> b;
+        cout << pref[b] - pref [a - 1] << '\n';
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem 2: Kuriyama Mirai's Stones
+
+* **Source:** [Codeforces 433B](https://codeforces.com/problemset/problem/433/B)
+* **Topic:** Sorting + Prefix Sums
+* **Constraint:** 
+* **Target Complexity:** 
+
+Kuriyama Mirai wants to query the sum of stones in a range . However, she asks two types of questions:
+
+1. **Type 1:** Sum of stones in the original array range .
+2. **Type 2:** Sum of stones in the range  *if the array were sorted*.
+
+#### Analysis
+
+A single prefix sum array cannot handle both unsorted and sorted queries efficiently. We must create **two parallel worlds**:
+
+1. `pref`: Built on the original input array.
+2. `prefSorted`: Built on a sorted version of the array.
+
+We use a `multiset` to automatically sort the elements as we read them (taking ), build both prefix sum arrays (), and then answer each query in .
+
+#### Implementation (C++)
+
+```cpp
+// g++ main.cpp -o main
+// .\main
+// Get-Content input.txt | .\main.exe
+// cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    ll n; cin >> n;
+    vector<ll> pref(n + 1, 0);
+    multiset<ll> vec;
+    for (int i = 1; i <= n; i++) {
+        ll curr; cin >> curr;
+        vec.insert(curr);
+        pref[i] = pref[i - 1] + curr;
+    }
+    vector<ll> prefSorted(n + 1, 0); int i = 1;
+    for (ll curr : vec) {
+        prefSorted[i] = prefSorted[i - 1] + curr;
+        i++;
+    }
+    ll m; cin >> m;
+    while (m--) {
+        ll a, b; int type;
+        cin >> type >> a >> b;
+        (type == 1) ? cout << pref[b] - pref[a - 1] << '\n' 
+        : cout << prefSorted[b] - prefSorted[a - 1] << '\n';
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem 3: Karen and Coffee (Extra)
+
+*Note: This problem is designed to be solved in-class if time permits.*
+
+* **Source:** [Codeforces 816B](https://codeforces.com/problemset/problem/816/B)
+* **Topic:** Difference Arrays + Prefix Sums
+* **Constraint:** 
+
+Karen has  recipes, each recommending a temperature range . A temperature is **admissible** if at least  recipes cover it. We need to answer  queries: how many admissible integer temperatures are there in range ?
+
+#### Analysis
+
+To solve this, we need to efficiently update ranges and then query them. This introduces the **Difference Array**.
+
+**Concept: The Difference Array vs. Prefix Sums**
+You can think of these two techniques as the discrete equivalents of Calculus operations:
+
+* **Prefix Sums are Integration:** They accumulate values to find the total area (sum) under a curve.
+* **Difference Arrays are Differentiation:** They represent the rate of change (slope) between adjacent elements.
+
+**Why use it here?**
+If we updated the recipes naively, adding  to every index in range  would take  per recipe, leading to  complexity (TLE).
+Using a Difference Array, we only update the **boundaries**:
+
+1. `diff[l]++`: "Start adding 1 here." (Slope goes up)
+2. `diff[r+1]--`: "Stop adding 1 here." (Slope goes down)
+
+This reduces the update cost to . When we later compute the prefix sum of this Difference Array, it "integrates" these changes, effectively filling in the  for the entire range .
+
+**Algorithm Pipeline:**
+
+1. **Difference Array ():** Process updates using the boundary technique.
+2. **Sweep & Threshold ():** Compute prefix sums of `diff` to get actual counts. Convert to binary: `1` if count , else `0`.
+3. **Prefix Sum Query ():** Build a final prefix sum array on the binary data to answer range queries in .
+
+#### Implementation (C++)
+
+```cpp
+// g++ main.cpp -o main
+// .\main
+// Get-Content input.txt | .\main.exe
+// cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+const int MAX = 200010;
+
+void solve() {
+    int n, k, q; cin >> n >> k >> q;
+    vector<int> diff(MAX, 0), count(MAX, 0), good(MAX, 0), pref(MAX, 0);
+    while (n--) {
+        int l, r; cin >> l >> r;
+        diff[l]++; diff[r + 1]--;
+    }
+    int h = 0;
+    for (int i = 0; i < MAX; i++) {
+        h += diff[i]; count[i] = h;
+    }
+    for (int i = 0; i < MAX; i++) good[i] = (count[i] >= k) ? 1 : 0;
+    for (int i = 0; i < MAX; i++) pref[i] = (i == 0) ? good[i] : pref[i - 1] + good[i];
+    while (q--) {
+        int l, r; cin >> l >> r;
+        cout << pref[r] - pref[l - 1] << '\n';
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Additional Practice (Homework)
+
+* **[Subarray Sums II](https://cses.fi/problemset/task/1661)** - CSES
+* **[Forest Queries](https://cses.fi/problemset/task/1652)** - CSES (2D Prefix Sums)
+* **[Running Miles](https://codeforces.com/problemset/problem/1826/D)** - Codeforces

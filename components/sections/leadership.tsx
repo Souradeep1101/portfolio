@@ -7,7 +7,7 @@ import { BlurFade } from "@/components/ui/blur-fade";
 
 const leadership = [
   {
-    role: "Manager of Industry Programs",
+    role: "Manager of Special Programs",
     org: "ACM at ASU",
     date: "Oct 2025 - Present",
     description: "Leading technical operations and industry relations. Automated internal newsletters using Docker & React.",

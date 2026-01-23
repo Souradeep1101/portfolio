@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "katex/dist/katex.min.css"; // Ensures Math equations render correctly
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Analytics } from "@vercel/analytics/react"; // 1. Import Vercel Analytics
+import { Analytics } from "@vercel/analytics/react"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/** * 1. SEO METADATA
- * Using 'metadataBase' and 'alternates.canonical' ensures Google understands 
- * that your multiple redirected paths belong to one primary URL.
- */
 export const metadata: Metadata = {
   metadataBase: new URL("https://souradeep.dev"),
   title: {
@@ -77,9 +74,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   
-  /** * 2. JSON-LD (STRUCTURED DATA)
-   * This explicitly links your domain to your identity across the web.
-   */
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -103,13 +97,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Injecting Structured Data for Search Engines */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body
+        suppressHydrationWarning={true}
         className={cn(
           "min-h-screen font-sans antialiased bg-background text-foreground transition-colors duration-300",
           geistSans.variable,
@@ -124,7 +118,6 @@ export default function RootLayout({
         >
           {children}
           <ThemeSwitcher />
-          {/* 2. Place Analytics component here to track all pages */}
           <Analytics />
         </ThemeProvider>
       </body>

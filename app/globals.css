@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -96,5 +97,24 @@
   .no-scrollbar {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@layer components {
+  /* Target tables only inside the prose (blog) content */
+  .prose table {
+    @apply w-full border-collapse my-8 text-sm;
+  }
+
+  .prose th {
+    @apply text-left py-3 px-4 border border-slate-700 bg-slate-900/50 text-white font-mono uppercase tracking-wider;
+  }
+
+  .prose td {
+    @apply py-3 px-4 border border-slate-800 text-slate-300;
+  }
+
+  .prose tr:hover td {
+    @apply bg-white/5 transition-colors;
   }
 }

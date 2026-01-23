@@ -52,7 +52,11 @@ export const DATA = {
         "Computer Architecture",
         "Operating Systems",
         "Competitive Programming",
-        "Distributed Systems"
+        "Distributed Systems",
+        "Information Assurance: Cybersecurity",
+        "Principles of Programming Language",
+        "Theoretical Computer Science",
+        "Computer Ethics"
       ]
     },
   ],
@@ -82,7 +86,7 @@ export const DATA = {
       links: [
         {
           type: "Source",
-          href: "https://github.com/souradeep1101/cyclops-mips", // Update if different
+          href: "https://github.com/souradeep1101/CyclopsMips", // Update if different
           icon: <IconBrandGithub className="size-3" />,
         },
       ],
@@ -98,7 +102,7 @@ export const DATA = {
       links: [
         {
           type: "Source",
-          href: "https://github.com/souradeep1101/cyclops-studio",
+          href: "https://github.com/souradeep1101/CyclopsStudio",
           icon: <IconBrandGithub className="size-3" />,
         },
       ],
@@ -111,7 +115,13 @@ export const DATA = {
       description:
         "Designed a novel multimodal architecture for synchronized audio/video generation, solving OOM bottlenecks via query chunking.",
       technologies: ["Python", "PyTorch", "CUDA"],
-      links: [],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/souradeep1101/JointDiT",
+          icon: <IconBrandGithub className="size-3" />,
+        },
+      ],
       image: "/joint-dit.png",
     },
   ],

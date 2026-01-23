@@ -72,7 +72,7 @@ export default function ResumePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 
                 {/* Variant: Full Stack */}
-                <a 
+                {/* <a 
                     href={FULLSTACK_RESUME_URL}
                     className="group flex items-center justify-between p-4 rounded-lg border border-border bg-accent/50 hover:bg-white/10 transition-all"
                 >
@@ -86,7 +86,7 @@ export default function ResumePage() {
                         </div>
                     </div>
                     <IconDownload size={18} className="text-slate-500 group-hover:text-white" />
-                </a>
+                </a> */}
 
                 {/* Link to Repo (Since it's public now!) */}
                 <a 

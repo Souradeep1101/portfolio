@@ -1,0 +1,217 @@
+---
+title: "ICPC Primer S02: Graphs & Search"
+publishedAt: "2026-02-01"
+summary: "Mastering grid navigation, recursion, and connected components. Transitioning from implicit grids to explicit adjacency lists."
+tags: ["C++", "Graphs", "DFS", "BFS"]
+author: "Souradeep1101"
+series: "icpc-spring-26"
+image: "/images/icpc-launch-banner-02.png"
+---
+
+## Session Architecture
+
+* **Topic:** Graphs
+* **Focus:** DFS, Connected Components & Flood Fill
+* **Goal:** Master grid navigation and recursion. Understand the difference between implicit graphs (grids) and explicit adjacency lists.
+
+![Graph Algorithms Banner](/images/icpc-launch-banner-02.png)
+
+---
+
+### Problem 1: Counting Rooms
+
+* **Source:** [CSES 1192](https://cses.fi/problemset/task/1192)
+* **Topic:** Grid DFS / Flood Fill
+* **Constraint:** $N, M \le 1000$
+* **Target Complexity:** $O(N \cdot M)$
+
+You are given a map of a building of size $N \times M$. Each square is either a floor (`.`) or a wall (`#`). You can walk left, right, up, and down through floor squares. Your task is to count the number of rooms (connected components of floor tiles).
+
+#### Analysis
+
+This problem asks us to find the number of **Connected Components** in an implicit graph. The grid itself acts as the graph:
+* **Nodes:** Every cell $(r, c)$ containing a floor `.`.
+* **Edges:** Connections between adjacent floor cells (Up, Down, Left, Right).
+
+To solve this, we iterate through every cell. If we find an unvisited floor tile, we increment our room counter and start a traversal (BFS or DFS) to "flood fill" that room. This process marks all reachable floor tiles as visited so they aren't counted again.
+
+We use **BFS (Breadth-First Search)** here to avoid potential stack overflow issues on large grids.
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+bool inBounds(int r, int c, int& n, int& m) {
+    return r >= 0 && r < n && c >= 0 && c < m;
+}
+
+void bfs(int& start_r, int& start_c, vector<vector<char>>& grid, int& n, int& m) {
+    int dx[] = {-1, 1, 0, 0};
+    int dy[] = {0, 0, -1, 1};
+    queue<pair<int, int>> q;
+    q.push({start_r, start_c});
+    grid[start_r][start_c] = '#';
+
+    while (!q.empty()) {
+        pair<int, int> curr = q.front();
+        q.pop();
+
+        for (int i = 0; i < 4; i++) {
+            int nr = curr.first + dx[i];
+            int nc = curr.second + dy[i];
+
+            bool isValid = inBounds(nr, nc, n, m) && grid[nr][nc] == '.';
+            if (isValid) {
+                grid[nr][nc] = '#';
+                q.push({nr, nc});
+            }
+        }
+    }
+}
+
+void solve() {
+    int n, m; cin >> n >> m;
+    vector<vector<char>> grid(n, vector<char>(m, '.'));
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> grid[i][j];
+        }
+    }
+    
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (grid[i][j] == '.') {
+                res++;
+                bfs(i, j, grid, n, m); 
+            }
+        }
+    }
+
+    cout << res << '\n';
+
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+
+```
+
+---
+
+### Problem 2: Kefa and Park
+
+* **Source:** [Codeforces 580C](https://codeforces.com/problemset/problem/580/C)
+* **Topic:** Tree DFS with Constraints
+* **Constraint:** 
+* **Target Complexity:** 
+
+Kefa wants to go to a restaurant (located at leaf nodes of a tree rooted at 1). However, he is afraid of cats. He will not go to a restaurant if the path from home (root) to it contains more than  **consecutive** vertices with cats.
+
+#### Analysis
+
+Unlike the previous grid problem, this is an **Explicit Graph** given by edges. Since it's a tree (acyclic), there is a unique path from the root to any leaf.
+
+We perform a **DFS** from the root. As we traverse, we maintain a state variable `cats` representing the *current* number of consecutive cats:
+
+1. **State Update:** If the current node has a cat, increment `cats`. If not, reset `cats` to 0.
+2. **Pruning:** If `cats > m`, stop exploring this branch immediately (Kefa is too scared).
+3. **Leaf Check:** If we reach a leaf node (a node with no children other than its parent) and haven't been pruned, it counts as a valid restaurant.
+
+We store the graph using an adjacency list `vector<vector<int>>` for efficient  neighbor access.
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+int dfs(int u, int prev, int cats, int& m, vector<int>& weights, 
+    vector<vector<int>>& adjList) {
+    if (weights[u]) cats++;
+    else cats = 0;
+    if (cats > m) return 0;
+
+    bool isLeaf = true;
+    int res = 0;
+    for (int v : adjList[u]) {
+        if (v != prev) {
+            isLeaf = false;
+            res += dfs(v, u, cats, m, weights, adjList);
+        }
+    }
+    if (isLeaf) return 1;
+    return res;
+}
+
+void solve() {
+    int n, m; cin >> n >> m;
+    vector<int> weights(n + 1, 0);
+    
+    for (int i = 1; i <= n; i++) {
+        cin >> weights[i];
+    }
+
+    vector<vector<int>> adjList(n + 1);
+    for (int i = 0; i < n - 1; i++) {
+        int u, v; cin >> u >> v;
+        adjList[u].push_back(v);
+        adjList[v].push_back(u);
+    }
+    
+    cout << dfs(1, 0, 0, m, weights, adjList) << '\n';
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+
+```
+
+---
+
+### Additional Practice (Homework)
+
+* **[Labyrinth](https://cses.fi/problemset/task/1193)** - CSES (Grid BFS for Shortest Path)
+* **[Building Roads](https://cses.fi/problemset/task/1666)** - CSES (Connected Components)
+* **[PolandBall and Forest](https://codeforces.com/problemset/problem/755/C)** - Codeforces (Simple Graph Components)

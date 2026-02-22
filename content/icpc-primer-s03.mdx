@@ -1,0 +1,265 @@
+---
+title: "ICPC Primer S03: Dynamic Programming I"
+publishedAt: "2026-02-22"
+summary: "Moving from brute force recursion to efficient DP. Mastering memoization, 1D optimization, and state transitions."
+tags: ["C++", "Dynamic Programming", "Algorithms", "Optimization"]
+author: "Souradeep1101"
+series: "icpc-spring-26"
+image: "/images/icpc-launch-banner-03.png"
+---
+
+## Session Architecture
+
+* **Topic:** Dynamic Programming 1
+* **Focus:** Memoization & 1D Optimization
+* **Goal:** Move from "brute force recursion" to efficient DP. Focus on state definition: `dp[i]` = best answer for size i.
+
+![Dynamic Programming Banner](/images/icpc-launch-banner-03.png)
+
+---
+
+### Prerequisites: The Anatomy of DP
+
+Before diving into the code, we need to understand how to break down a Dynamic Programming problem. DP is fundamentally about making a sequence of choices to reach a target, storing the results of subproblems so we don't redundantly calculate them (memoization/tabulation). 
+
+To solve any 1D DP problem, you must clearly define three things:
+1.  **State Definition:** What does `dp[i]` actually represent? (e.g., the minimum coins to make sum `i`, or the maximum points up to index `i`).
+2.  **Base Cases:** What are the trivial starting points? (e.g., `dp[0] = 0`).
+3.  **Transitions:** How do we compute `dp[i]` using previously calculated states like `dp[i-1]` or `dp[i-c]`?
+
+Many introductory DP problems are variations of the **Knapsack Problem**. In an Unbounded Knapsack scenario, you have an infinite supply of items (like coins or cut lengths) and you want to fill a capacity optimally. 
+
+---
+
+### Problem 1: Minimizing Coins
+
+* **Source:** [CSES 1634](https://cses.fi/problemset/task/1634)
+* **Topic:** Classic DP (Knapsack-style)
+* **Constraint:** `n` (coins) ≤ 100, `x` (target sum) ≤ 1000000
+* **Target Complexity:** O(n * x) time, O(x) space
+
+**Description:**
+Consider a money system consisting of `n` coins. Each coin has a positive integer value. Your task is to produce a sum of money `x` using the available coins in such a way that the number of coins is minimal.
+
+#### Analysis
+
+This problem is a standard variation of the Unbounded Knapsack problem. We want to find the minimum number of coins needed to sum up to exactly `x`. We solve this by building up the optimal solution for every sum from 1 to `x`.
+
+1.  **State Definition:** Let `dp[i]` be the minimum number of coins required to make the sum `i`.
+2.  **Base Case:** `dp[0] = 0` (It takes 0 coins to make a sum of 0).
+3.  **Initialization:** Fill the rest of the array with a very large number (like `1e9`) to represent an unreachable state.
+4.  **Transitions:** For each sum `i` from 1 to `x`, iterate through all available coin values `c`. If `i - c >= 0`, the transition is: `dp[i] = min(dp[i], dp[i - c] + 1)`.
+
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n, x;
+    cin >> n >> x;
+    
+    vector<int> c(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> c[i];
+    }
+    
+    vector<int> dp(x + 1, 1e9);
+    dp[0] = 0;
+    
+    for (int i = 1; i <= x; ++i) {
+        for (int coin : c) {
+            if (i - coin >= 0) {
+                dp[i] = min(dp[i], dp[i - coin] + 1);
+            }
+        }
+    }
+    
+    if (dp[x] == 1e9) cout << -1 << "\n";
+    else cout << dp[x] << "\n";
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+
+```
+
+---
+
+### Problem 2: Cut Ribbon
+
+* **Source:** [Codeforces 189A](https://codeforces.com/problemset/problem/189/A)
+* **Topic:** Optimization / Brute Force with DP
+* **Constraint:** `n`, `a`, `b`, `c` ≤ 4000
+* **Target Complexity:** O(n) time, O(n) space
+
+**Description:**
+Polycarpus has a ribbon of length `n`. He wants to cut the ribbon in a way that fulfills two conditions: after the cutting each ribbon piece should have length `a`, `b`, or `c`, and the number of ribbon pieces should be maximum. Find the maximum possible number of ribbon pieces.
+
+#### Analysis
+
+This problem is the exact mirror of Minimizing Coins. Instead of minimizing steps to reach a target, we are maximizing steps.
+
+1. **State Definition:** Let `dp[i]` be the maximum number of ribbon pieces we can get from a ribbon of length `i`.
+2. **Base Case:** `dp[0] = 0`.
+3. **Initialization:** Fill the array with `-1` to denote unreachable lengths. We cannot build valid cuts on top of impossible remainders.
+4. **Transitions:** For length `i` from 1 to `n`, try cutting a piece of length `L` (where `L` is `a`, `b`, or `c`). If `i - L >= 0` and `dp[i - L] != -1`, update the state: `dp[i] = max(dp[i], dp[i - L] + 1)`.
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n, a, b, c;
+    cin >> n >> a >> b >> c;
+    
+    vector<int> dp(n + 1, -1);
+    dp[0] = 0;
+    vector<int> cuts = {a, b, c};
+    
+    for (int i = 1; i <= n; ++i) {
+        for (int cut : cuts) {
+            if (i - cut >= 0 && dp[i - cut] != -1) {
+                dp[i] = max(dp[i], dp[i - cut] + 1);
+            }
+        }
+    }
+    
+    cout << dp[n] << "\n";
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+
+```
+
+---
+
+### Problem 3: Boredom
+
+* **Source:** [Codeforces 455A](https://codeforces.com/problemset/problem/455/A)
+* **Topic:** 1D DP on Frequencies
+* **Constraint:** `n` ≤ 100000, `a_i` ≤ 100000
+* **Target Complexity:** O(n + M) time, O(M) space (where M is the maximum value in the array)
+
+**Description:**
+Given an array of `n` integers. You can choose an integer `x` and delete it, earning `x` points. However, doing so also deletes all elements in the array equal to `x + 1` and `x - 1`. Maximize your total points.
+
+#### Analysis
+
+This problem forces us to shift our DP state from array *indices* to array *values*. If you pick a number `x`, you should take all copies of `x` in the array (since picking one destroys all `x + 1` and `x - 1` anyway, there is no further penalty for picking the rest).
+
+1. **Preprocessing:** Create a frequency array `count`, where `count[i]` stores how many times `i` appears. Picking `i` yields `i * count[i]` points.
+2. **State Definition:** Let `dp[i]` be the maximum points achievable considering only the numbers from 1 up to `i`.
+3. **Base Cases:** `dp[0] = 0`, and `dp[1] = count[1]`.
+4. **Transitions:** For any number `i` up to the max element `M`, we can either skip `i` (taking `dp[i-1]`) or take `i` (taking `dp[i-2] + i * count[i]`). Transition: `dp[i] = max(dp[i-1], dp[i-2] + i * count[i])`.
+
+*Note: Since the maximum score can easily exceed the 32-bit integer limit, we must use `long long` for the DP array to prevent overflow.*
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n;
+    cin >> n;
+    
+    int max_val = 0;
+    vector<ll> count(100005, 0);
+    
+    for (int i = 0; i < n; ++i) {
+        int x;
+        cin >> x;
+        count[x]++;
+        max_val = max(max_val, x);
+    }
+    
+    vector<ll> dp(max_val + 1, 0);
+    if (max_val >= 1) {
+        dp[1] = count[1];
+    }
+    
+    for (int i = 2; i <= max_val; ++i) {
+        dp[i] = max(dp[i - 1], dp[i - 2] + i * count[i]);
+    }
+    
+    cout << dp[max_val] << "\n";
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+
+```
+
+---
+
+### Additional Practice (Homework)
+
+To truly solidify these 1D state concepts, try these out before our next session:
+
+* **[Coin Combinations I](https://cses.fi/problemset/task/1635)** - CSES (Counting permutations of sums)
+* **[Coin Combinations II](https://cses.fi/problemset/task/1636)** - CSES (Counting combinations of sums - order matters!)
+* **[Maximum Increase](https://codeforces.com/problemset/problem/702/A)** - Codeforces (Classic Longest Increasing Subarray variant)

@@ -1,0 +1,403 @@
+---
+title: "ICPC Primer S04: Prime Sieve Contest"
+publishedAt: "2026-03-22"
+summary: "A two-hour mock contest focusing on Number Theory, the Sieve of Eratosthenes, and prime factorization algorithms under time constraints."
+tags: ["C++", "Number Theory", "Algorithms", "Contest", "Optimization"]
+author: "Souradeep1101"
+series: "icpc-spring-26"
+image: "/images/icpc-launch-banner-04.png"
+---
+
+## Session Architecture
+
+* **Topic:** Mathematics & Number Theory
+* **Focus:** Prime Sieve Mock Contest
+* **Goal:** Implement Number Theory algorithms (Sieve of Eratosthenes, Prime Factorization) efficiently under a two-hour competitive constraint.
+
+![Number Theory Contest Banner](/images/icpc-launch-banner-04.png)
+
+### Logistics Update
+Please note the time change for this specific contest session:
+* **Time:** Sunday, 5:30 PM - 7:30 PM
+* **Location:** BYENG 210
+* **Format:** 2-Hour Mock Contest (No live instruction, pure problem-solving)
+
+---
+
+### Problem A: Design Tutorial: Learn from Math
+
+* **Source:** [Codeforces 472A](https://codeforces.com/problemset/problem/472/A)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n;
+    cin >> n;
+    
+    if (n % 2 == 0) {
+        cout << 4 << " " << n - 4 << "\n";
+    } else {
+        cout << 9 << " " << n - 9 << "\n";
+    }
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem B: T-primes
+
+* **Source:** [Codeforces 230B](https://codeforces.com/problemset/problem/230/B)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+const int MAXN = 1000005;
+bool is_prime[MAXN];
+
+void solve() {
+    fill(is_prime, is_prime + MAXN, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int i = 2; i * i < MAXN; i++) {
+        if (is_prime[i]) {
+            for (int j = i * i; j < MAXN; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+
+    int n;
+    if (!(cin >> n)) return;
+    
+    for (int i = 0; i < n; i++) {
+        ll x;
+        cin >> x;
+        ll root = round(sqrt(x));
+        if (root * root == x && is_prime[root]) {
+            cout << "YES\n";
+        } else {
+            cout << "NO\n";
+        }
+    }
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem C: Sherlock and his girlfriend
+
+* **Source:** [Codeforces 776B](https://codeforces.com/problemset/problem/776/B)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n;
+    cin >> n;
+    
+    vector<int> colors(n + 2, 0);
+    int max_color = 1;
+    
+    for (int i = 2; i <= n + 1; i++) {
+        if (colors[i] == 0) {
+            colors[i] = 1;
+            for (int j = i * 2; j <= n + 1; j += i) {
+                colors[j] = 2;
+                max_color = 2;
+            }
+        }
+    }
+    
+    cout << max_color << "\n";
+    for (int i = 2; i <= n + 1; i++) {
+        cout << colors[i] << (i == n + 1 ? "" : " ");
+    }
+    cout << "\n";
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem D: Almost Prime
+
+* **Source:** [Codeforces 26A](https://codeforces.com/problemset/problem/26/A)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n;
+    cin >> n;
+    
+    vector<int> prime_factors(n + 1, 0);
+    int almost_primes = 0;
+    
+    for (int i = 2; i <= n; i++) {
+        if (prime_factors[i] == 0) {
+            for (int j = i; j <= n; j += i) {
+                prime_factors[j]++;
+            }
+        }
+        if (prime_factors[i] == 2) {
+            almost_primes++;
+        }
+    }
+    
+    cout << almost_primes << "\n";
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem E: Noldbach problem
+
+* **Source:** [Codeforces 17A](https://codeforces.com/problemset/problem/17/A)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n, k;
+    cin >> n >> k;
+    
+    vector<bool> is_prime(n + 1, true);
+    vector<int> primes;
+    is_prime[0] = is_prime[1] = false;
+    
+    for (int i = 2; i <= n; i++) {
+        if (is_prime[i]) {
+            primes.push_back(i);
+            for (int j = i * i; j <= n; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    
+    int count = 0;
+    for (int p : primes) {
+        for (size_t i = 0; i < primes.size() - 1; i++) {
+            if (primes[i] + primes[i+1] + 1 == p) {
+                count++;
+                break;
+            }
+        }
+    }
+    
+    if (count >= k) cout << "YES\n";
+    else cout << "NO\n";
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem F: Colliders
+
+* **Source:** [Codeforces 154B](https://codeforces.com/problemset/problem/154/B)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    int n, m;
+    cin >> n >> m;
+    
+    vector<int> min_prime(n + 1, 0);
+    for (int i = 2; i <= n; i++) {
+        if (min_prime[i] == 0) {
+            for (int j = i; j <= n; j += i) {
+                if (min_prime[j] == 0) min_prime[j] = i;
+            }
+        }
+    }
+    
+    vector<bool> active(n + 1, false);
+    vector<int> factor_used_by(n + 1, 0);
+    
+    for (int i = 0; i < m; i++) {
+        char op;
+        int x;
+        cin >> op >> x;
+        
+        if (op == '+') {
+            if (active[x]) {
+                cout << "Already on\n";
+            } else {
+                int temp = x;
+                int conflict = 0;
+                while (temp > 1) {
+                    int p = min_prime[temp];
+                    if (factor_used_by[p] != 0) {
+                        conflict = factor_used_by[p];
+                        break;
+                    }
+                    while (temp % p == 0) temp /= p;
+                }
+                
+                if (conflict != 0) {
+                    cout << "Conflict with " << conflict << "\n";
+                } else {
+                    active[x] = true;
+                    temp = x;
+                    while (temp > 1) {
+                        int p = min_prime[temp];
+                        factor_used_by[p] = x;
+                        while (temp % p == 0) temp /= p;
+                    }
+                    cout << "Success\n";
+                }
+            }
+        } else {
+            if (!active[x]) {
+                cout << "Already off\n";
+            } else {
+                active[x] = false;
+                int temp = x;
+                while (temp > 1) {
+                    int p = min_prime[temp];
+                    factor_used_by[p] = 0;
+                    while (temp % p == 0) temp /= p;
+                }
+                cout << "Success\n";
+            }
+        }
+    }
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```

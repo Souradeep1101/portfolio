@@ -33,7 +33,7 @@ export function HeroSection() {
         >
           
           {/* Stacked Name Container */}
-          <div className="flex flex-col items-start select-none">
+          <h1 className="flex flex-col items-start select-none">
             <HyperText
               text={firstName}
               className="text-5xl md:text-8xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground leading-[0.9]"
@@ -44,7 +44,7 @@ export function HeroSection() {
               className="text-5xl md:text-8xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground leading-[0.9] -mt-1 md:-mt-4"
               duration={1200} 
             />
-          </div>
+          </h1>
 
           <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
             {DATA.description}

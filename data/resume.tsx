@@ -77,6 +77,22 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "CCompiler",
+      dates: "Feb 2026 - Present",
+      active: true,
+      description:
+        "A high-performance C11 compiler targeting x86-64. Features a hand-written DFA lexer, recursive-descent parser, and a custom backend for the System V AMD64 ABI. Strictly follows the C11 ISO draft standard and aims to eventually compile the Linux kernel. Completed lexical analysis phase.",
+      technologies: ["C++17", "x86-64", "CMake"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/souradeep1101/CCompiler",
+          icon: <IconBrandGithub className="size-3" />,
+        },
+      ],
+      image: "/ccompiler.png",
+    },
+    {
       title: "Cyclops MIPS",
       dates: "Nov 2025 - Present",
       active: true,

@@ -22,7 +22,7 @@ export function ThemeSwitcher() {
   ]
 
   return (
-    <div className="fixed bottom-6 left-24 z-50">
+    <div className="fixed bottom-6 left-6 z-50">
       <div className="group relative flex flex-col items-center"> 
         
         {/* The Menu (Now rendered ABOVE the button in DOM order, but positioned bottom-up) */}

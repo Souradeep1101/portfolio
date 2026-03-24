@@ -5,7 +5,11 @@ import "katex/dist/katex.min.css"; // Ensures Math equations render correctly
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Analytics } from "@vercel/analytics/react"; 
+import { Analytics } from "@vercel/analytics/react";
+import { Navbar } from "@/components/navbar";
+import { MouseGlow } from "@/components/mouse-glow";
+import { CommandMenu } from "@/components/command-menu";
+import { SystemMonitor } from "@/components/system-monitor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,11 +65,6 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
     creator: "@Souradeep1101",
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
 };
 
 export default function RootLayout({
@@ -73,26 +72,50 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Souradeep Banerjee",
-    "url": "https://souradeep.dev",
-    "image": "https://souradeep.dev/og-image.png",
-    "sameAs": [
-      "https://github.com/Souradeep1101",
-      "https://www.linkedin.com/in/Souradeep1101",
-      "https://twitter.com/Souradeep1101",
-      "https://www.youtube.com/channel/UCv4ctQjbqZ0tq8lxchYkm2g",
-      "https://search.asu.edu/profile/4997799"
-    ],
-    "jobTitle": "Systems Engineer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Arizona State University"
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Souradeep Banerjee",
+      "url": "https://souradeep.dev",
+      "image": "https://souradeep.dev/og-image.png",
+      "description": "Systems Engineer & CS Student at ASU. Specializing in C++, Low-Latency Systems, and High-Performance Computing.",
+      "sameAs": [
+        "https://github.com/souradeep1101",
+        "https://linkedin.com/in/souradeep1101",
+        "https://twitter.com/Souradeep1101",
+        "https://www.youtube.com/channel/UCv4ctQjbqZ0tq8lxchYkm2g",
+        "https://search.asu.edu/profile/4997799"
+      ],
+      "jobTitle": "Systems Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cruv.org"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Arizona State University"
+      },
+      "knowsAbout": [
+        "Systems Engineering",
+        "C++",
+        "Low-Latency Systems",
+        "High-Performance Computing",
+        "Computer Architecture",
+        "Operating Systems",
+        "Emulators",
+        "Modern OpenGL",
+        "C11 Compiler"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Souradeep Banerjee Portfolio",
+      "url": "https://souradeep.dev"
     }
-  };
+  ];
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -116,7 +139,11 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <Navbar />
+          <CommandMenu />
+          <SystemMonitor />
           {children}
+          <MouseGlow />
           <ThemeSwitcher />
           <Analytics />
         </ThemeProvider>

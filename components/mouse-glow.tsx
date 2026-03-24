@@ -19,7 +19,7 @@ export function MouseGlow() {
 
   return (
     <motion.div
-      className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
+      className="pointer-events-none fixed inset-0 z-50 transition-opacity duration-300"
       style={{
         background: useMotionTemplate`
           radial-gradient(

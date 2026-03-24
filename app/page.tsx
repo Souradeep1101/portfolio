@@ -20,11 +20,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background text-muted-foreground font-sans selection:bg-primary/30 pb-24 relative overflow-x-hidden">
       
-      {/* --- GLOBAL FX & WIDGETS --- */}
-      <MouseGlow />
-      <CommandMenu /> 
-      <SystemMonitor />
-
       {/* --- BACKGROUND AMBIENCE (FIXED) --- */}
       {/* Replaced hardcoded 'purple' with 'primary' and 'secondary' */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -35,7 +30,6 @@ export default function Home() {
 
       {/* --- MAIN CONTENT LAYER --- */}
       <div className="relative z-10">
-        <Navbar />
         
         {/* 1. INTRODUCTION */}
         <HeroSection />          

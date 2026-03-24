@@ -1,10 +1,9 @@
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { Navbar } from "@/components/navbar";
-import { MouseGlow } from "@/components/mouse-glow";
 import Link from "next/link";
 import { IconArrowLeft, IconCalendar } from "@tabler/icons-react";
-import { TracingBeam } from "@/components/ui/tracing-beam"; // KEEPING THIS
+import { TracingBeam } from "@/components/ui/tracing-beam"; 
+import { Metadata } from "next";
 
 import remarkGfm from "remark-gfm";      
 import remarkMath from "remark-math";    
@@ -15,6 +14,44 @@ export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  
+  if (!post) {
+      return {};
+  }
+
+  const { title, summary, publishedAt } = post.metadata;
+  const ogImage = `/og-image.png`; 
+
+  return {
+    title,
+    description: summary,
+    openGraph: {
+      title,
+      description: summary,
+      type: "article",
+      publishedTime: publishedAt,
+      url: `https://souradeep.dev/blog/${slug}`,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: summary,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
@@ -29,10 +66,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   return (
     // 1. Removed 'pb-24' from here so main doesn't have untracked space
     <main className="min-h-screen bg-background text-muted-foreground font-sans selection:bg-purple-500/30 relative">
-      <MouseGlow />
       <div className="relative z-10">
-        <Navbar />
-
         <div className="pt-32 px-6"> 
           {/* Tracing Beam tracks everything inside it */}
           <TracingBeam className="px-6">

@@ -98,13 +98,13 @@ export function HyperText({
       <div className="absolute top-2 left-0 flex">
         <AnimatePresence mode="wait">
             {displayText.map((letter, i) => (
-            <motion.h1
+            <motion.span
                 key={i}
                 className={cn(letter === " " ? "w-3" : "", className)}
                 {...framerProps}
             >
                 {letter}
-            </motion.h1>
+            </motion.span>
             ))}
         </AnimatePresence>
       </div>

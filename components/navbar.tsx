@@ -42,13 +42,32 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="h-4 w-px bg-white/10 hidden md:block flex-shrink-0" />
+        <div className="h-4 w-px bg-white/10 hidden sm:block flex-shrink-0" />
 
-        <div className="hidden md:flex items-center gap-1.5 text-[10px] font-mono font-medium text-slate-500 border border-border px-2 py-1 rounded-md bg-accent/50 select-none flex-shrink-0">
-            <span>CMD</span>
-            <span className="text-slate-600">+</span>
-            <span>K</span>
-        </div>
+        <button 
+          onClick={() => window.dispatchEvent(new CustomEvent("open-command-menu"))}
+          className="flex items-center gap-1.5 text-[10px] font-mono font-medium text-slate-500 border border-border px-2 py-1.5 rounded-md bg-accent/50 hover:bg-accent hover:text-white transition-all select-none flex-shrink-0 active:scale-95"
+          title="Open Search (Cmd+K)"
+        >
+            <span className="hidden sm:inline">CMD</span>
+            <span className="text-slate-600 hidden sm:inline">+</span>
+            <span className="hidden sm:inline">K</span>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="14" 
+              height="14" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className="sm:hidden"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+        </button>
       </div>
     </nav>
   );

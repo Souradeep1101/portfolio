@@ -2,6 +2,7 @@
 
 import { DATA } from "@/data/resume";
 import { GlassCard } from "@/components/ui/glass-card";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { BlurFade } from "@/components/ui/blur-fade";
@@ -15,9 +16,12 @@ export function ProjectsSection() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {DATA.projects.map((project, idx) => (
-          <BlurFade key={project.title} delay={0.2 + idx * 0.1} inView>
+          <BlurFade key={project.title} delay={0.2 + idx * 0.1} inView className="h-full">
             <GlassCard
-              className={idx === 0 || idx === 3 ? "md:col-span-2" : ""}
+              className={cn(
+                "h-full",
+                idx === 0 || idx === 3 ? "md:col-span-2" : ""
+              )}
             >
               <div className="flex flex-col h-full justify-between space-y-6">
                 <div>

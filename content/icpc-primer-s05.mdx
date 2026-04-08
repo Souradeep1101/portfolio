@@ -1,0 +1,232 @@
+---
+title: "ICPC Primer S05: Trees & Range Queries"
+publishedAt: "2026-04-05"
+summary: "Mastering hierarchical data and efficient updates. Transitioning from basic prefix sums to Segment Trees and Fenwick Trees."
+tags: ["C++", "Data Structures", "Segment Tree", "Range Queries"]
+author: "Souradeep1101"
+series: "icpc-spring-26"
+image: "/images/icpc-launch-banner-05.png"
+---
+
+## Session Architecture
+
+* **Topic:** Trees & Range Queries
+* **Focus:** Subtree Queries & Segment/Fenwick Introduction
+* **Goal:** Handling hierarchical data and updates efficiently.
+
+![Trees and Range Queries Banner](/images/icpc-launch-banner-05.png)
+
+---
+
+### Problem 1: List Removals
+
+* **Source:** [CSES 1749](https://cses.fi/problemset/task/1749)
+* **Topic:** Segment Tree / Fenwick Tree with Binary Search
+* **Constraint:** $N \le 2 \cdot 10^5$
+* **Target Complexity:** $O(N \log N)$
+
+**Description:**
+You are given a list consisting of $n$ integers. Your task is to process $n$ removals from the list and print the value of the removed elements in the exact order they are removed. 
+
+**Input:**
+The first input line contains an integer $n$: the size of the list.
+The second line has $n$ integers $x_1, x_2, \dots, x_n$: the contents of the list.
+The third line has $n$ integers $p_1, p_2, \dots, p_n$: the positions of the elements to be removed. During the $i$-th operation, you remove the element at the $p_i$-th position from the *current* list.
+
+**Output:**
+Print the elements in the order they are removed.
+
+#### Analysis & Hints
+
+If we use a standard `std::vector` and call `.erase()`, the operation takes $O(N)$ time per query, resulting in an $O(N^2)$ Time Limit Exceeded (TLE) error. 
+
+Instead of actually removing elements, what if we just mark them as "deleted"?
+1. Create a Fenwick Tree (Binary Indexed Tree) or a Segment Tree initialized with $1$s at every valid index, representing that the element is still present.
+2. The prefix sum up to index $i$ tells us exactly how many elements are still in the list from the start up to $i$.
+3. To find the $k$-th remaining element, we can binary search over our Fenwick Tree to find the smallest index where the prefix sum equals $k$.
+4. Once found, print the original array value at that index, and update the tree by changing the $1$ to a $0$.
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    // ---------------------------------------------------------
+    // The solution for this problem will be revealed live 
+    // during the ICPC Primer S05 session on April 15th.
+    // ---------------------------------------------------------
+    cout << "Solution Hidden" << '\n';
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem 2: Distinct Values Queries
+
+* **Source:** [CSES 1734](https://cses.fi/problemset/task/1734)
+* **Topic:** Offline Processing & Range Queries
+* **Constraint:** $N, Q \le 2 \cdot 10^5$
+* **Target Complexity:** $O((N + Q) \log N)$
+
+**Description:**
+You are given an array of $n$ integers and $q$ queries of the form $[a, b]$. For each query, you must report the number of *distinct* values in the subarray from index $a$ to index $b$.
+
+**Input:**
+The first line contains two integers $n$ and $q$.
+The second line contains $n$ integers: the values in the array.
+The following $q$ lines describe the queries. Each line has two integers $a$ and $b$.
+
+**Output:**
+Print the number of distinct values for each query.
+
+#### Analysis & Hints
+
+Answering these queries "online" (exactly in the order they are given) is extremely difficult without advanced data structures like a Persistent Segment Tree. However, we have all the queries upfront. This means we can process them **offline**.
+
+1. **Sort the Queries:** Group or sort the queries based on their right endpoint $b$.
+2. **Sweep Line:** Iterate through the array from left to right. As you visit each element, keep track of its "last seen" index using a Hash Map (`std::map`).
+3. **Point Updates:** If you see an element for the first time, add a $+1$ to its current index in a Fenwick Tree. If you have seen it before, remove the $+1$ from its old position and add a $+1$ to its new current position. This guarantees that any distinct number only ever contributes exactly $1$ to the active range.
+4. **Range Sums:** When your sweep line reaches the right endpoint $b$ of a query, the answer to that query is simply a range sum on the Fenwick Tree from $a$ to $b$.
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    // ---------------------------------------------------------
+    // The solution for this problem will be revealed live 
+    // during the ICPC Primer S05 session on April 15th.
+    // ---------------------------------------------------------
+    cout << "Solution Hidden" << '\n';
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Problem 3: Binary Assignment
+
+* **Source:** [ICPC 2022 HCMC Regional - B](https://oj.vnoi.info/problem/icpc22_regional_b)
+* **Topic:** Advanced Segment Tree with Lazy Propagation
+* **Constraint:** $N, Q \le 10^5$
+* **Target Complexity:** $O((N + Q) \log N)$
+
+**Description:**
+Given a binary string $S$ of length $n$, let $X(S)$ be the length of the shortest binary string that is *not* a subsequence of $S$. Let $Y(S)$ be the number of strings of length $X(S)$ that are not subsequences of $S$.
+You must process $q$ sequential modifications to $S$. Modifications are of three types:
+* `0 l r` – Set all bits in the range $[l, r]$ to $0$.
+* `1 l r` – Set all bits in the range $[l, r]$ to $1$.
+* `F l r` – Flip all bits in the range $[l, r]$ ($0 \to 1$ and $1 \to 0$).
+
+After each query, output the values of $X(S)$ and $Y(S)$ modulo $10^9 + 7$.
+
+**Input:**
+The first line contains $n$ and $q$.
+The second line contains the binary string $S$.
+The next $q$ lines contain the descriptions of the modifications.
+
+**Output:**
+For each modification, output two space-separated integers: $X(S)$ and $Y(S) \pmod{10^9 + 7}$.
+
+#### Analysis & Hints
+
+This is a heavily constrained regional-level problem that tests your ability to map abstract mathematical properties onto a Segment Tree. 
+
+1. **Lazy Propagation is Mandatory:** The queries involve massive range updates (set to 0, set to 1, flip). This immediately signals that a Segment Tree with Lazy Propagation is required.
+2. **Subsequence DP on a Tree:** To compute $X(S)$ and $Y(S)$, you need to know how characters combine to form subsequences. Each node in the Segment Tree must represent a substring and store a state (usually a DP matrix or a set of counts) that describes the shortest non-subsequence data. 
+3. **State Merging:** How do you merge the DP state of a left child and a right child? If you know the properties of the left half and the right half, you can mathematically deduce the properties of the parent.
+4. **Handling Flips:** Because there is a `Flip` operation, every node must maintain its standard state *and* its completely flipped state simultaneously. When a flip update arrives, you swap the two states and push the lazy tag down. 
+
+#### Implementation (C++)
+
+```cpp
+// Compilation & Execution Instructions:
+// g++ main.cpp -o main
+// .\main
+// PowerShell: Get-Content input.txt | .\main.exe
+// Bash: cat input.txt | .\main.exe
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+void solve() {
+    // ---------------------------------------------------------
+    // The solution for this problem will be revealed live 
+    // during the ICPC Primer S05 session on April 15th.
+    // ---------------------------------------------------------
+    cout << "Solution Hidden" << '\n';
+}
+
+int main() {
+    // Fast I/O Optimization
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t; 
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Additional Practice (Homework)
+
+To lock in these data structures before we hit Advanced DP in Session 06, check out these extensions:
+
+* **[Range Update Queries](https://cses.fi/problemset/task/1651)** - CSES (Classic Lazy Prop / Difference Array on Fenwick)
+* **[Salary Queries](https://cses.fi/problemset/task/1144)** - CSES (Coordinate Compression + Point Updates)
+* **[Inversion Probability](https://codeforces.com/problemset/problem/1208/E)** - Codeforces (Applying Segment Trees to Expected Values)

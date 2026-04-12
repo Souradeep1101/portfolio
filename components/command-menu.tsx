@@ -118,7 +118,7 @@ export function CommandMenu() {
               
               <Command.Item 
                 value="projects work" 
-                onSelect={() => runCommand(() => router.push("/#projects"))}
+                onSelect={() => runCommand(() => router.push("/projects"))}
                 className="relative flex cursor-pointer select-none items-center rounded-lg px-2 py-2 text-sm text-muted-foreground hover:bg-white/10 hover:text-white aria-selected:bg-white/10 aria-selected:text-white transition-colors data-[selected=true]:bg-white/10 data-[selected=true]:text-white"
               >
                 <IconCode className="mr-2 h-4 w-4" /> Projects

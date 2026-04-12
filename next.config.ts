@@ -15,9 +15,6 @@ const nextConfig: NextConfig = {
       { source: '/work/', destination: '/#experience', permanent: true },
       { source: '/work', destination: '/#experience', permanent: true },
       
-      { source: '/projects/', destination: '/#projects', permanent: true },
-      { source: '/projects', destination: '/#projects', permanent: true },
-      
       // Found in your legacy sitemap
       { source: '/work/cruv/', destination: '/#experience', permanent: true },
       { source: '/work/cruv', destination: '/#experience', permanent: true }, 

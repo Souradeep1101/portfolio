@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/blog",
     "/resume",
+    "/projects",
+    "/projects/cyclops-mips",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),

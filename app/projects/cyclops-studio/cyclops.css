@@ -1,0 +1,77 @@
+@theme inline {
+  --color-primary-fixed-dim: #00daf3;
+  --color-inverse-on-surface: #313030;
+  --color-on-primary-fixed: #001f24;
+  --color-secondary-fixed-dim: #b9c7df;
+  --color-tertiary-fixed: #ffdf96;
+  --color-on-primary: #00363d;
+  --color-on-primary-fixed-variant: #004f58;
+  --color-background-cyclops: #131313;
+  --color-surface-bright: #393939;
+  --color-on-secondary: #233144;
+  --color-on-tertiary-container: #6f5500;
+  --color-tertiary-fixed-dim: #f3bf26;
+  --color-surface-variant: #353534;
+  --color-on-tertiary-fixed: #251a00;
+  --color-outline-variant: #3b494c;
+  --color-primary-cyclops: #c3f5ff;
+  --color-tertiary-container: #fec931;
+  --color-on-surface-variant: #bac9cc;
+  --color-surface-container: #201f1f;
+  --color-surface-container-highest: #353534;
+  --color-inverse-surface: #e5e2e1;
+  --color-primary-container-cyclops: #00e5ff;
+  --color-on-background-cyclops: #e5e2e1;
+  --color-on-error: #690005;
+  --color-primary-fixed: #9cf0ff;
+  --color-on-primary-container: #00626e;
+  --color-surface-container-low: #1c1b1b;
+  --color-on-secondary-fixed-variant: #3a485b;
+  --color-secondary-cyclops: #b9c7df;
+  --color-secondary-fixed: #d5e3fc;
+  --color-surface: #131313;
+  --color-error-cyclops: #ffb4ab;
+  --color-on-secondary-container: #abb9d1;
+  --color-inverse-primary: #006875;
+  --color-surface-tint: #00daf3;
+  --color-outline-cyclops: #849396;
+  --color-on-secondary-fixed: #0d1c2e;
+  --color-on-tertiary: #3e2e00;
+  --color-surface-dim: #131313;
+  --color-tertiary-cyclops: #ffeac0;
+  --color-on-surface-cyclops: #e5e2e1;
+  --color-error-container-cyclops: #93000a;
+  --color-secondary-container-cyclops: #3c4a5e;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-on-error-container-cyclops: #ffdad6;
+  --color-on-tertiary-fixed-variant: #594400;
+
+  --font-headline: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+}
+
+.cyclops-root {
+  color-scheme: dark;
+  background-color: var(--color-background-cyclops);
+  color: var(--color-on-background-cyclops);
+  font-family: var(--font-body);
+}
+
+.kinetic-border {
+  position: relative;
+}
+.kinetic-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+  opacity: 0.2;
+}
+.code-glow {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}

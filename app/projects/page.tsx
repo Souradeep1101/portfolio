@@ -26,6 +26,14 @@ const PROJECTS_DATA: Project[] = [
     techStack: ["C++23", "OpenGL", "CMake"],
     slug: "cyclops-mips",
   },
+  {
+    id: "2",
+    title: "CyclopsStudio",
+    description:
+      "Professional GPU-Accelerated 2D Animation Studio built from scratch for high-fidelity anime production workflows.",
+    techStack: ["C++17", "OpenGL 4.5", "Dear ImGui", "GLFW"],
+    slug: "cyclops-studio",
+  },
 ];
 
 export default function ProjectsManagerPage() {
